@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ScholarFetch — KNN Nanorods Research Downloader</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <!-- ── GRAIN OVERLAY ── -->
+    <div class="grain"></div>
+
+    <!-- ── TOP BAR ── -->
+    <header class="topbar">
+        <div class="topbar-inner">
+            <span class="logo">SCHOLAR<span class="logo-accent">FETCH</span></span>
+            <span class="topbar-status" id="serverStatus">● Checking server…</span>
+        </div>
+    </header>
+
+    <!-- ── HERO / SEARCH BLOCK ── -->
+    <section class="hero">
+        <div class="hero-label">RESEARCH PAPER DOWNLOADER</div>
+        <h1 class="hero-title">Find &amp; Download<br /><span class="hero-highlight">Research Papers</span></h1>
+        <p class="hero-sub">Scrape Google Scholar, grab PDFs, export as a single ZIP archive.</p>
+
+        <div class="search-box" id="searchBox">
+            <input type="text" id="searchInput" class="search-input" placeholder="e.g. KNN nanorods" autocomplete="off"
+                spellcheck="false" />
+            <div class="search-row">
+                <label class="num-label">Results</label>
+                <select id="numResults" class="num-select">
+                    <option value="5">5</option>
+                    <option value="10" selected>10</option>
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                </select>
+                <button class="btn-search" id="btnSearch">SEARCH</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── STATS BAR (appears after search) ── -->
+    <div class="stats-bar hidden" id="statsBar">
+        <span class="stat"><span class="stat-num" id="statTotal">0</span> Found</span>
+        <span class="stat-divider">|</span>
+        <span class="stat"><span class="stat-num" id="statPdf">0</span> PDFs Available</span>
+        <span class="stat-divider">|</span>
+        <span class="stat"><span class="stat-num" id="statSelected">0</span> Selected</span>
+        <button class="btn-zip" id="btnZip">⬇ Download ZIP</button>
+    </div>
+
+    <!-- ── RESULTS GRID ── -->
+    <section class="results-section">
+        <!-- loading skeleton -->
+        <div class="loader hidden" id="loader">
+            <div class="loader-ring"></div>
+            <span class="loader-text">Scraping Google Scholar…</span>
+        </div>
+
+        <!-- error banner -->
+        <div class="error-banner hidden" id="errorBanner">
+            <span class="error-icon">⚠</span>
+            <span class="error-msg" id="errorMsg">Something went wrong.</span>
+        </div>
+
+        <!-- cards grid -->
+        <div class="cards-grid" id="cardsGrid"></div>
+    </section>
+
+    <!-- ── TOAST ── -->
+    <div class="toast hidden" id="toast"><span id="toastMsg"></span></div>
+
+    <!-- ── SCRIPTS ── -->
+    <script src="app.js"></script>
+</body>
+
+</html>
